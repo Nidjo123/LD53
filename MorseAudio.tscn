@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://f3bs0oel16ok"]
+
+[ext_resource type="Script" path="res://MorseAudio.gd" id="1_uydgn"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_f2xta"]
+
+[node name="MorseAudio" type="AudioStreamPlayer"]
+stream = SubResource("AudioStreamGenerator_f2xta")
+script = ExtResource("1_uydgn")
