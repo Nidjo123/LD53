@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgum6hemxqq2h"]
+
+[ext_resource type="Script" path="res://Scripts/MorseAudio.gd" id="1_pc7w6"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_f2xta"]
+
+[node name="MorseAudio" type="AudioStreamPlayer"]
+stream = SubResource("AudioStreamGenerator_f2xta")
+script = ExtResource("1_pc7w6")
+pulse_hz = 400.0
+rand_range = 0.01
