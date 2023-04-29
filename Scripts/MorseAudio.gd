@@ -30,8 +30,11 @@ func _ready():
 
 func _process(delta):
 	_fill_buffer()
-	
-	if Input.is_action_just_pressed("ui_down"):
-		stream_paused = false
-	elif Input.is_action_just_released("ui_down"):
-		stream_paused = true
+
+
+func _on_morse_controller_telegraph_pressed():
+	stream_paused = false
+
+
+func _on_morse_controller_telegraph_released():
+	stream_paused = true

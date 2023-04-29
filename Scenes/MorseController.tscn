@@ -7,3 +7,6 @@
 script = ExtResource("1_lu0of")
 
 [node name="MorseAudio" parent="." instance=ExtResource("2_4smsn")]
+
+[connection signal="telegraph_pressed" from="." to="MorseAudio" method="_on_morse_controller_telegraph_pressed"]
+[connection signal="telegraph_released" from="." to="MorseAudio" method="_on_morse_controller_telegraph_released"]

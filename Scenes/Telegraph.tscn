@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj1vd15gpuj6g"]
+
+[ext_resource type="PackedScene" uid="uid://cytf7hrfph3ta" path="res://Scenes/MorseController.tscn" id="1_dot85"]
+[ext_resource type="Script" path="res://Scenes/Telegraph.gd" id="1_h13cq"]
+[ext_resource type="PackedScene" uid="uid://b2pj2iffcghis" path="res://Scenes/MorseText.tscn" id="2_pj4sx"]
+[ext_resource type="SpriteFrames" uid="uid://becau161cstrh" path="res://Animations/TelegraphPressNewFrames.tres" id="4_5km8r"]
+
+[node name="TelegraphScene" type="Node2D"]
+script = ExtResource("1_h13cq")
+
+[node name="MorseController" parent="." instance=ExtResource("1_dot85")]
+
+[node name="MorseText" parent="." instance=ExtResource("2_pj4sx")]
+
+[node name="TelegraphAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(574.889, 324)
+scale = Vector2(3.58889, 3.58889)
+sprite_frames = ExtResource("4_5km8r")
+animation = &"idle"
+speed_scale = 3.0
+
+[connection signal="telegraph_pressed" from="MorseController" to="." method="_on_morse_controller_telegraph_pressed"]
+[connection signal="telegraph_released" from="MorseController" to="." method="_on_morse_controller_telegraph_released"]
+[connection signal="animation_finished" from="TelegraphAnimation" to="." method="_on_telegraph_animation_animation_finished"]

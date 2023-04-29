@@ -1,0 +1,59 @@
+[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://becau161cstrh"]
+
+[ext_resource type="Texture2D" uid="uid://do3uqq6u5r2g5" path="res://Animations/TelegraphIdle/telegraph_animation_idle1.png" id="1_j6e0a"]
+[ext_resource type="Texture2D" uid="uid://c7v7p6p8s5cj7" path="res://Animations/TelegraphPressNew/telegraph_animation_press1.png" id="1_ux0gd"]
+[ext_resource type="Texture2D" uid="uid://8ywecfkr4lmh" path="res://Animations/TelegraphPressNew/telegraph_animation_press2.png" id="2_gpg0f"]
+[ext_resource type="Texture2D" uid="uid://di22s72nh5hae" path="res://Animations/TelegraphIdle/telegraph_animation_idle2.png" id="2_x4vw1"]
+[ext_resource type="Texture2D" uid="uid://c3p1lb5nm047y" path="res://Animations/TelegraphIdle/telegraph_animation_idle3.png" id="3_hkspw"]
+[ext_resource type="Texture2D" uid="uid://cneetykqum6x4" path="res://Animations/TelegraphPressNew/telegraph_animation_press3.png" id="3_obcxd"]
+[ext_resource type="Texture2D" uid="uid://bqmkaeg02m7o7" path="res://Animations/TelegraphPressNew/telegraph_animation_press4.png" id="4_b7miy"]
+[ext_resource type="Texture2D" uid="uid://3nqem1deh0xs" path="res://Animations/TelegraphPressNew/telegraph_animation_press5.png" id="5_y2vcq"]
+[ext_resource type="Texture2D" uid="uid://j2b250fc7vef" path="res://Animations/TelegraphPressNew/telegraph_animation_press6.png" id="6_7p2xw"]
+[ext_resource type="Texture2D" uid="uid://c6m6bshbole73" path="res://Animations/TelegraphPressNew/telegraph_animation_press7.png" id="7_ejdcu"]
+[ext_resource type="Texture2D" uid="uid://kwnwb4jhrkap" path="res://Animations/TelegraphPressNew/telegraph_animation1_press_no_zrak.png" id="8_aota8"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j6e0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x4vw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hkspw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ux0gd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gpg0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_obcxd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_b7miy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_y2vcq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7p2xw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ejdcu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_aota8")
+}],
+"loop": false,
+"name": &"press",
+"speed": 40.0
+}]

@@ -5,6 +5,9 @@ extends Node
 @export var dash_duration: float = 0.1
 @export_range(0.005, 0.2) var tolerance: float = 0.05
 
+signal telegraph_pressed
+signal telegraph_released
+
 
 var is_pressed: bool = false
 var pressed_duration: float = 0.0
@@ -37,10 +40,12 @@ func _process(delta):
 		if not is_pressed:
 			pressed_duration = 0.0
 			is_pressed = true
+			telegraph_pressed.emit()
 		else:
 			pressed_duration += delta
 	else:
 		if is_pressed:
 			pressed_duration += delta
 			_register_input()
+			telegraph_released.emit()
 		is_pressed = false

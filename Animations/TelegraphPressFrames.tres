@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://316v5buf6kwb"]
+
+[ext_resource type="Texture2D" uid="uid://epw2u8bdoe8x" path="res://Animations/TelegraphPress/telegraph_animation1.png" id="1_rjm6p"]
+[ext_resource type="Texture2D" uid="uid://cb7hpu21syfkc" path="res://Animations/TelegraphPress/telegraph_animation2.png" id="2_w3usu"]
+[ext_resource type="Texture2D" uid="uid://bw0744326jcva" path="res://Animations/TelegraphPress/telegraph_animation3.png" id="3_tb863"]
+[ext_resource type="Texture2D" uid="uid://bwc2udyldjk5f" path="res://Animations/TelegraphPress/telegraph_animation4.png" id="4_wpfuq"]
+[ext_resource type="Texture2D" uid="uid://rlt0fec4rwxl" path="res://Animations/TelegraphPress/telegraph_animation5.png" id="5_1k5o7"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rjm6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_w3usu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tb863")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wpfuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1k5o7")
+}],
+"loop": false,
+"name": &"press",
+"speed": 20.0
+}]
