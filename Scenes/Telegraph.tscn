@@ -19,6 +19,9 @@ sprite_frames = ExtResource("4_5km8r")
 animation = &"idle"
 speed_scale = 3.0
 
+[connection signal="letter_typed" from="MorseController" to="." method="_on_morse_controller_letter_typed"]
 [connection signal="telegraph_pressed" from="MorseController" to="." method="_on_morse_controller_telegraph_pressed"]
+[connection signal="telegraph_pressed" from="MorseController" to="MorseController" method="_on_telegraph_pressed"]
 [connection signal="telegraph_released" from="MorseController" to="." method="_on_morse_controller_telegraph_released"]
+[connection signal="telegraph_released" from="MorseController" to="MorseController" method="_on_telegraph_released"]
 [connection signal="animation_finished" from="TelegraphAnimation" to="." method="_on_telegraph_animation_animation_finished"]

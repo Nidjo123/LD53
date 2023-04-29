@@ -2,7 +2,6 @@ extends Control
 
 
 var letter_idx = 0
-var passed = 0.0
 
 
 func _ready():
@@ -34,12 +33,17 @@ func _set_hint_text():
 	$MorseHint/HintText.text = hint_text
 
 
+func advance_letter(letter: String):
+	var expected_letter = $Text.text[letter_idx]
+	if letter == '' or letter.nocasecmp_to(expected_letter):
+		$ColorRect.make_red()
+	else:
+		$ColorRect.make_green()
+	letter_idx = (letter_idx + 1) % $Text.text.length()
+	_set_hint_text()
+
+
 func _process(delta):
 	var letter_position = get_letter_position(letter_idx)
 	$MorseHint.position = letter_position - $MorseHint.size / 2
 	$ColorRect.position = letter_position - $ColorRect.size / 2
-	passed += delta
-	if passed >= 1.0:
-		letter_idx = (letter_idx + 1) % 8
-		passed -= 1.0
-		_set_hint_text()

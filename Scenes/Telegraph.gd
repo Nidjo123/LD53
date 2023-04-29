@@ -22,3 +22,7 @@ func _on_telegraph_animation_animation_finished():
 		$TelegraphAnimation.play("idle")
 	else:
 		$TelegraphAnimation.pause()
+
+
+func _on_morse_controller_letter_typed(letter):
+	$MorseText.advance_letter(letter)

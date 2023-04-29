@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2pj2iffcghis"]
+[gd_scene load_steps=3 format=3 uid="uid://b2pj2iffcghis"]
 
 [ext_resource type="Script" path="res://Scripts/MorseText.gd" id="1_eyuaq"]
+[ext_resource type="Script" path="res://Scenes/ColorRect.gd" id="2_6yalb"]
 
 [node name="MorseText" type="Control"]
 layout_mode = 3
@@ -26,9 +27,12 @@ offset_left = 1.0
 offset_right = 3.0
 offset_bottom = 76.0
 color = Color(1, 0, 1, 1)
+script = ExtResource("2_6yalb")
 
-[node name="MorseHint" type="PanelContainer" parent="."]
-layout_mode = 0
+[node name="Timer" type="Timer" parent="ColorRect"]
+
+[node name="MorseHint" type="CenterContainer" parent="."]
+layout_mode = 2
 offset_left = 101.0
 offset_top = 39.0
 offset_right = 141.0
@@ -36,3 +40,6 @@ offset_bottom = 79.0
 
 [node name="HintText" type="Label" parent="MorseHint"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[connection signal="timeout" from="ColorRect/Timer" to="ColorRect" method="_on_timer_timeout"]
