@@ -1,17 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://cb5khxpbu7ecs"]
+[gd_scene load_steps=8 format=3 uid="uid://cb5khxpbu7ecs"]
 
 [ext_resource type="PackedScene" uid="uid://cytf7hrfph3ta" path="res://Scenes/MorseController.tscn" id="1_dot85"]
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_f4xmj"]
 [ext_resource type="Script" path="res://Telegraph.gd" id="2_ff80x"]
 [ext_resource type="PackedScene" uid="uid://c0778ivao4xo2" path="res://Scenes/MorseText.tscn" id="2_pj4sx"]
 [ext_resource type="SpriteFrames" uid="uid://becau161cstrh" path="res://Animations/TelegraphPressNewFrames.tres" id="4_5km8r"]
-[ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="6_k7rt0"]
+[ext_resource type="Texture2D" uid="uid://brq6ukncpmt6y" path="res://Images/tbg-night.png" id="5_wgi4m"]
+
+[sub_resource type="GDScript" id="GDScript_40e8m"]
+script/source = "extends Control
+"
 
 [node name="TelegraphScene" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_f4xmj")
 
 [node name="Game" type="Node2D" parent="."]
+process_mode = 1
 script = ExtResource("2_ff80x")
+
+[node name="Background" type="Sprite2D" parent="Game"]
+position = Vector2(574.889, 323.5)
+scale = Vector2(3.60556, 3.60556)
+texture = ExtResource("5_wgi4m")
 
 [node name="MorseController" parent="Game" instance=ExtResource("1_dot85")]
 
@@ -26,11 +37,12 @@ speed_scale = 3.0
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("6_k7rt0")
+script = SubResource("GDScript_40e8m")
 
 [node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
 layout_mode = 0
@@ -38,6 +50,7 @@ offset_right = 1152.0
 offset_bottom = 648.0
 
 [node name="Panel" type="Panel" parent="PauseMenu/CenterContainer"]
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer/Panel"]

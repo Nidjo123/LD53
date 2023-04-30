@@ -1,14 +1,6 @@
 extends ColorRect
 
 
-func _ready():
-	pass
-
-
-func _process(delta):
-	pass
-
-
 func make_green():
 	color = Color.GREEN
 	$Timer.start(0.25)

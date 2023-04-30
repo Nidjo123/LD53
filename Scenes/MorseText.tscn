@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0778ivao4xo2"]
+[gd_scene load_steps=2 format=3 uid="uid://c0778ivao4xo2"]
 
 [ext_resource type="Script" path="res://Scripts/MorseText.gd" id="1_eyuaq"]
-[ext_resource type="Script" path="res://Scripts/ColorRect.gd" id="2_yw643"]
 
 [node name="MorseText" type="Control"]
 layout_mode = 3
@@ -12,34 +11,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eyuaq")
 
-[node name="Text" type="Label" parent="."]
+[node name="Text" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 366.0
-offset_top = 80.0
-offset_right = 510.0
-offset_bottom = 103.0
-theme_override_font_sizes/font_size = 32
+offset_left = 381.0
+offset_top = 151.0
+offset_right = 525.0
+offset_bottom = 199.0
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 text = "Test text"
+scroll_active = false
+shortcut_keys_enabled = false
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="MorseHint" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 1.0
-offset_right = 3.0
-offset_bottom = 76.0
-color = Color(1, 0, 1, 1)
-script = ExtResource("2_yw643")
+offset_right = 65.0
+offset_bottom = 43.0
 
-[node name="Timer" type="Timer" parent="ColorRect"]
-
-[node name="MorseHint" type="CenterContainer" parent="."]
+[node name="HintText" type="RichTextLabel" parent="MorseHint"]
+clip_contents = false
 layout_mode = 2
-offset_left = 101.0
-offset_top = 39.0
-offset_right = 141.0
-offset_bottom = 79.0
-
-[node name="HintText" type="Label" parent="MorseHint"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-
-[connection signal="timeout" from="ColorRect/Timer" to="ColorRect" method="_on_timer_timeout"]
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "test 1[color=green]2[/color]3415"
+scroll_active = false

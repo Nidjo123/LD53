@@ -9,9 +9,9 @@ func _ready():
 	$PauseMenu.hide()
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
-		set_paused(true)
+		set_paused(not get_tree().paused)
 
 
 func set_paused(paused):

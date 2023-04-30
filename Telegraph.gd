@@ -1,14 +1,6 @@
 extends Node2D
 
 
-func _ready():
-	pass
-
-
-func _process(delta):
-	pass
-
-
 func _on_morse_controller_telegraph_pressed():
 	$TelegraphAnimation.play("press")
 

@@ -29,7 +29,7 @@ func _ready():
 	_fill_buffer()
 
 
-func _process(delta):
+func _process(_delta):
 	_fill_buffer()
 
 
