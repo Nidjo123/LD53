@@ -29,12 +29,13 @@ func get_letter_position(letter_index):
 	text_size.y = 0
 	var letter_size = get_string_size(text[letter_index])
 	var hint_offset = Vector2(-letter_size.x / 2, -letter_size.y)
-	return $Text.position + text_size + hint_offset
+	return $Text.position + (text_size + hint_offset) * $Text.scale
 
 
 func _set_hint_text():
 	var letter = original_text[letter_idx]
-	var hint_text = MorseUtils.get_code(letter)
+	var hint_text: String = MorseUtils.get_code(letter)
+	hint_text = hint_text.replace('.', '*')
 	$MorseHint/HintText.text = '[center]%s[/center]' % hint_text
 
 
@@ -88,6 +89,7 @@ func _get_accuracy():
 			letter_count += 1
 	var correct_count = correct_letters.count(true)
 	return float(correct_count) / letter_count
+	$Text.get_character_line()
 
 
 func _finished():

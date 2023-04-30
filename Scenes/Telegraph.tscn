@@ -29,8 +29,8 @@ texture = ExtResource("5_wgi4m")
 [node name="MorseText" parent="Game" instance=ExtResource("2_pj4sx")]
 
 [node name="TelegraphAnimation" type="AnimatedSprite2D" parent="Game"]
-position = Vector2(574.889, 324)
-scale = Vector2(3.58889, 3.58889)
+position = Vector2(575.778, 324.5)
+scale = Vector2(3.59444, 3.59444)
 sprite_frames = ExtResource("4_5km8r")
 animation = &"idle"
 speed_scale = 3.0

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0778ivao4xo2"]
+[gd_scene load_steps=3 format=3 uid="uid://c0778ivao4xo2"]
 
+[ext_resource type="Theme" uid="uid://bivyqx1y8v6km" path="res://Theme.tres" id="1_8gx2c"]
 [ext_resource type="Script" path="res://Scripts/MorseText.gd" id="1_eyuaq"]
 
 [node name="MorseText" type="Control"]
@@ -9,17 +10,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_8gx2c")
 script = ExtResource("1_eyuaq")
 
 [node name="Text" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 381.0
 offset_top = 151.0
-offset_right = 525.0
-offset_bottom = 199.0
-theme_override_font_sizes/normal_font_size = 32
+offset_right = 542.0
+offset_bottom = 188.0
+scale = Vector2(2, 2)
 bbcode_enabled = true
-text = "Test text"
+text = "TEST TEXT
+"
 scroll_active = false
 shortcut_keys_enabled = false
 
