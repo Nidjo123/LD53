@@ -1,28 +1,28 @@
 [gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://becau161cstrh"]
 
-[ext_resource type="Texture2D" uid="uid://do3uqq6u5r2g5" path="res://Animations/TelegraphIdle/telegraph_animation_idle1.png" id="1_j6e0a"]
-[ext_resource type="Texture2D" uid="uid://c7v7p6p8s5cj7" path="res://Animations/TelegraphPressNew/telegraph_animation_press1.png" id="1_ux0gd"]
-[ext_resource type="Texture2D" uid="uid://8ywecfkr4lmh" path="res://Animations/TelegraphPressNew/telegraph_animation_press2.png" id="2_gpg0f"]
-[ext_resource type="Texture2D" uid="uid://di22s72nh5hae" path="res://Animations/TelegraphIdle/telegraph_animation_idle2.png" id="2_x4vw1"]
-[ext_resource type="Texture2D" uid="uid://c3p1lb5nm047y" path="res://Animations/TelegraphIdle/telegraph_animation_idle3.png" id="3_hkspw"]
-[ext_resource type="Texture2D" uid="uid://cneetykqum6x4" path="res://Animations/TelegraphPressNew/telegraph_animation_press3.png" id="3_obcxd"]
-[ext_resource type="Texture2D" uid="uid://bqmkaeg02m7o7" path="res://Animations/TelegraphPressNew/telegraph_animation_press4.png" id="4_b7miy"]
-[ext_resource type="Texture2D" uid="uid://3nqem1deh0xs" path="res://Animations/TelegraphPressNew/telegraph_animation_press5.png" id="5_y2vcq"]
-[ext_resource type="Texture2D" uid="uid://j2b250fc7vef" path="res://Animations/TelegraphPressNew/telegraph_animation_press6.png" id="6_7p2xw"]
-[ext_resource type="Texture2D" uid="uid://c6m6bshbole73" path="res://Animations/TelegraphPressNew/telegraph_animation_press7.png" id="7_ejdcu"]
-[ext_resource type="Texture2D" uid="uid://kwnwb4jhrkap" path="res://Animations/TelegraphPressNew/telegraph_animation1_press_no_zrak.png" id="8_aota8"]
+[ext_resource type="Texture2D" uid="uid://dkvlwnpbywbor" path="res://Animations/TelegraphIdle/telegraph animation1 idle final1.png" id="1_jp6mm"]
+[ext_resource type="Texture2D" uid="uid://cak64k3r2242n" path="res://Animations/TelegraphIdle/telegraph animation1 idle final2.png" id="2_xdldp"]
+[ext_resource type="Texture2D" uid="uid://bpxvtaj7ncsux" path="res://Animations/TelegraphIdle/telegraph animation1 idle final3.png" id="3_rt680"]
+[ext_resource type="Texture2D" uid="uid://d1c646vewmcyf" path="res://Animations/TelegraphPressNew/telegraph animation1 press final1.png" id="4_agvaq"]
+[ext_resource type="Texture2D" uid="uid://ddajuvjc3qrrp" path="res://Animations/TelegraphPressNew/telegraph animation1 press final2.png" id="5_3eov8"]
+[ext_resource type="Texture2D" uid="uid://cy5psfyoox5s6" path="res://Animations/TelegraphPressNew/telegraph animation1 press final3.png" id="6_e542o"]
+[ext_resource type="Texture2D" uid="uid://c4kvo3eslfm0t" path="res://Animations/TelegraphPressNew/telegraph animation1 press final4.png" id="7_fbpqd"]
+[ext_resource type="Texture2D" uid="uid://cqt4kaggp2xpo" path="res://Animations/TelegraphPressNew/telegraph animation1 press final5.png" id="8_r81eu"]
+[ext_resource type="Texture2D" uid="uid://rhcn1tvmnrpw" path="res://Animations/TelegraphPressNew/telegraph animation1 press final6.png" id="9_7howf"]
+[ext_resource type="Texture2D" uid="uid://ckhxpxyxefngh" path="res://Animations/TelegraphPressNew/telegraph animation1 press final7.png" id="10_sl55j"]
+[ext_resource type="Texture2D" uid="uid://cde30yfu7vina" path="res://Animations/TelegraphPressNew/telegraph animation1 press final8.png" id="11_jpsrn"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_j6e0a")
+"texture": ExtResource("1_jp6mm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_x4vw1")
+"texture": ExtResource("2_xdldp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_hkspw")
+"texture": ExtResource("3_rt680")
 }],
 "loop": true,
 "name": &"idle",
@@ -30,28 +30,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ux0gd")
+"texture": ExtResource("4_agvaq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gpg0f")
+"texture": ExtResource("5_3eov8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_obcxd")
+"texture": ExtResource("6_e542o")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_b7miy")
+"texture": ExtResource("7_fbpqd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_y2vcq")
+"texture": ExtResource("8_r81eu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_7p2xw")
+"texture": ExtResource("9_7howf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_ejdcu")
+"texture": ExtResource("10_sl55j")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_aota8")
+"texture": ExtResource("11_jpsrn")
 }],
 "loop": false,
 "name": &"press",

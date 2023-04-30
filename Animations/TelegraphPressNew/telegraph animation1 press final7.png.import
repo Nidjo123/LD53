@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cneetykqum6x4"
-path="res://.godot/imported/telegraph_animation_press3.png-8a08d33bd18e96c4fc0ea141eaad807e.ctex"
+uid="uid://ckhxpxyxefngh"
+path="res://.godot/imported/telegraph animation1 press final7.png-c03f9182eb0355aa8e05c45621cd2783.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animations/TelegraphPressNew/telegraph_animation_press3.png"
-dest_files=["res://.godot/imported/telegraph_animation_press3.png-8a08d33bd18e96c4fc0ea141eaad807e.ctex"]
+source_file="res://Animations/TelegraphPressNew/telegraph animation1 press final7.png"
+dest_files=["res://.godot/imported/telegraph animation1 press final7.png-c03f9182eb0355aa8e05c45621cd2783.ctex"]
 
 [params]
 
