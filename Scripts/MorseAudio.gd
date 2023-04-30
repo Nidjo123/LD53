@@ -5,8 +5,10 @@ extends AudioStreamPlayer
 @export var pulse_hz: float = 320.0
 @export var rand_range: float = 0.1
 
+
 var phase = 0.0
 var playback: AudioStreamPlayback = null
+
 
 func _fill_buffer():
 	var increment = pulse_hz / sample_hz
@@ -15,7 +17,6 @@ func _fill_buffer():
 	while to_fill > 0:
 		var frame = Vector2.ONE * sin(phase * TAU)
 		playback.push_frame(frame)  # audio frames are stereo
-		var next_phase = phase + increment
 		phase = fmod(phase + increment, 1.0)
 		to_fill -= 1
 

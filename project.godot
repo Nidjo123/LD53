@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 
 MorseUtils="*res://Scripts/MorseUtils.gd"
 
+[display]
+
+window/size/resizable=false
+
 [input]
 
 telegraph_press={

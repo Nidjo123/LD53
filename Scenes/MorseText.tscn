@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2pj2iffcghis"]
+[gd_scene load_steps=3 format=3 uid="uid://c0778ivao4xo2"]
 
 [ext_resource type="Script" path="res://Scripts/MorseText.gd" id="1_eyuaq"]
-[ext_resource type="Script" path="res://Scenes/ColorRect.gd" id="2_6yalb"]
+[ext_resource type="Script" path="res://Scripts/ColorRect.gd" id="2_yw643"]
 
 [node name="MorseText" type="Control"]
 layout_mode = 3
@@ -27,7 +27,7 @@ offset_left = 1.0
 offset_right = 3.0
 offset_bottom = 76.0
 color = Color(1, 0, 1, 1)
-script = ExtResource("2_6yalb")
+script = ExtResource("2_yw643")
 
 [node name="Timer" type="Timer" parent="ColorRect"]
 

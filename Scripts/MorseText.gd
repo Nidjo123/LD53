@@ -35,7 +35,7 @@ func _set_hint_text():
 
 func advance_letter(letter: String):
 	var expected_letter = $Text.text[letter_idx]
-	if letter == '' or letter.nocasecmp_to(expected_letter):
+	if letter == '' or letter.nocasecmp_to(expected_letter) != 0:
 		$ColorRect.make_red()
 	else:
 		$ColorRect.make_green()

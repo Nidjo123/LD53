@@ -1,27 +1,61 @@
-[gd_scene load_steps=5 format=3 uid="uid://cj1vd15gpuj6g"]
+[gd_scene load_steps=7 format=3 uid="uid://cb5khxpbu7ecs"]
 
 [ext_resource type="PackedScene" uid="uid://cytf7hrfph3ta" path="res://Scenes/MorseController.tscn" id="1_dot85"]
-[ext_resource type="Script" path="res://Scenes/Telegraph.gd" id="1_h13cq"]
-[ext_resource type="PackedScene" uid="uid://b2pj2iffcghis" path="res://Scenes/MorseText.tscn" id="2_pj4sx"]
+[ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_f4xmj"]
+[ext_resource type="Script" path="res://Telegraph.gd" id="2_ff80x"]
+[ext_resource type="PackedScene" uid="uid://c0778ivao4xo2" path="res://Scenes/MorseText.tscn" id="2_pj4sx"]
 [ext_resource type="SpriteFrames" uid="uid://becau161cstrh" path="res://Animations/TelegraphPressNewFrames.tres" id="4_5km8r"]
+[ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="6_k7rt0"]
 
 [node name="TelegraphScene" type="Node2D"]
-script = ExtResource("1_h13cq")
+script = ExtResource("1_f4xmj")
 
-[node name="MorseController" parent="." instance=ExtResource("1_dot85")]
+[node name="Game" type="Node2D" parent="."]
+script = ExtResource("2_ff80x")
 
-[node name="MorseText" parent="." instance=ExtResource("2_pj4sx")]
+[node name="MorseController" parent="Game" instance=ExtResource("1_dot85")]
 
-[node name="TelegraphAnimation" type="AnimatedSprite2D" parent="."]
+[node name="MorseText" parent="Game" instance=ExtResource("2_pj4sx")]
+
+[node name="TelegraphAnimation" type="AnimatedSprite2D" parent="Game"]
 position = Vector2(574.889, 324)
 scale = Vector2(3.58889, 3.58889)
 sprite_frames = ExtResource("4_5km8r")
 animation = &"idle"
 speed_scale = 3.0
 
-[connection signal="letter_typed" from="MorseController" to="." method="_on_morse_controller_letter_typed"]
-[connection signal="telegraph_pressed" from="MorseController" to="." method="_on_morse_controller_telegraph_pressed"]
-[connection signal="telegraph_pressed" from="MorseController" to="MorseController" method="_on_telegraph_pressed"]
-[connection signal="telegraph_released" from="MorseController" to="." method="_on_morse_controller_telegraph_released"]
-[connection signal="telegraph_released" from="MorseController" to="MorseController" method="_on_telegraph_released"]
-[connection signal="animation_finished" from="TelegraphAnimation" to="." method="_on_telegraph_animation_animation_finished"]
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_k7rt0")
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="PauseMenu/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer/Panel"]
+layout_mode = 2
+offset_left = -35.0
+offset_top = -16.0
+offset_right = 35.0
+offset_bottom = 15.0
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[connection signal="game_resumed" from="." to="Game/MorseController" method="_reset_state"]
+[connection signal="letter_typed" from="Game/MorseController" to="Game" method="_on_morse_controller_letter_typed"]
+[connection signal="telegraph_pressed" from="Game/MorseController" to="Game" method="_on_morse_controller_telegraph_pressed"]
+[connection signal="telegraph_pressed" from="Game/MorseController" to="Game/MorseController" method="_on_telegraph_pressed"]
+[connection signal="telegraph_released" from="Game/MorseController" to="Game" method="_on_morse_controller_telegraph_released"]
+[connection signal="telegraph_released" from="Game/MorseController" to="Game/MorseController" method="_on_telegraph_released"]
+[connection signal="animation_finished" from="Game/TelegraphAnimation" to="Game" method="_on_telegraph_animation_animation_finished"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

@@ -30,6 +30,8 @@ func _register_input():
 		input = '-'
 	
 	inputs += input
+	if input == '':
+		input = 'nothing'
 	print("Registered %s, elapsed %f" % [input, pressed_elapsed])
 
 
@@ -60,3 +62,10 @@ func _on_telegraph_released():
 	_register_input()
 	is_pressed = false
 	idle_elapsed = 0
+
+
+func _reset_state():
+	is_pressed = false
+	idle_elapsed = 0
+	pressed_elapsed = 0
+	$MorseAudio.stream_paused = true
