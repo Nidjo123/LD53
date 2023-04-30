@@ -41,11 +41,33 @@ offset_bottom = 648.0
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/CenterContainer/Panel/VBoxContainer"]
 layout_mode = 2
-offset_left = -35.0
-offset_top = -16.0
-offset_right = 35.0
-offset_bottom = 15.0
+
+[node name="VolumeLabel" type="Label" parent="PauseMenu/CenterContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Volume:"
+
+[node name="VolumeSlider" type="HSlider" parent="PauseMenu/CenterContainer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -72.0
+max_value = 0.0
 
 [node name="ResumeButton" type="Button" parent="PauseMenu/CenterContainer/Panel/VBoxContainer"]
 layout_mode = 2
@@ -58,4 +80,5 @@ text = "Resume"
 [connection signal="telegraph_released" from="Game/MorseController" to="Game" method="_on_morse_controller_telegraph_released"]
 [connection signal="telegraph_released" from="Game/MorseController" to="Game/MorseController" method="_on_telegraph_released"]
 [connection signal="animation_finished" from="Game/TelegraphAnimation" to="Game" method="_on_telegraph_animation_animation_finished"]
+[connection signal="value_changed" from="PauseMenu/CenterContainer/Panel/VBoxContainer/HBoxContainer/VolumeSlider" to="Game/MorseController" method="_on_volume_slider_value_changed"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

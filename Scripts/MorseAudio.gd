@@ -39,3 +39,8 @@ func _on_morse_controller_telegraph_pressed():
 
 func _on_morse_controller_telegraph_released():
 	stream_paused = true
+
+
+func volume_changed(new_volume_db):
+	var bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_db(bus_index, new_volume_db)

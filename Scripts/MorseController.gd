@@ -69,3 +69,7 @@ func _reset_state():
 	idle_elapsed = 0
 	pressed_elapsed = 0
 	$MorseAudio.stream_paused = true
+
+
+func _on_volume_slider_value_changed(value):
+	$MorseAudio.volume_changed(value)
