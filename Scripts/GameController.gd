@@ -5,10 +5,16 @@ signal game_paused
 signal game_resumed
 
 
+enum TimeOfDay { DAY, NIGHT }
+
+
 @onready var time_spent: float = 0.0
 @onready var current_level: int = 0
 
 @export_multiline var level_texts: Array[String] = []
+@export var time_of_day: Array[TimeOfDay] = []
+@export var day_texture: Texture2D = load("res://Images/tbg-day.png")
+@export var night_texture: Texture2D = load("res://Images/tbg-night.png")
 
 
 func _is_level_transition():
@@ -16,12 +22,14 @@ func _is_level_transition():
 
 
 func _ready():
+	assert(level_texts.size() == time_of_day.size())
 	$Game/MorseText.hide()
 	$Game/PaperAnimation.hide()
 	$Game/PaperAnimation.frame = 0
 	$PauseMenu.hide()
 	$EndMenu.hide()
 	$GameIntro.show()
+	_prepare_background()
 
 
 func _process(delta):
@@ -57,13 +65,29 @@ func _on_morse_text_finished(accuracy):
 
 func _get_text():
 	return level_texts[current_level]
+	
+
+func _get_time_of_day():
+	return time_of_day[current_level]
+
+
+func _prepare_background():
+	match _get_time_of_day():
+		TimeOfDay.DAY:
+			$Game/Background.texture = day_texture
+			$Game/Background/DeskLight.hide()
+		TimeOfDay.NIGHT:
+			$Game/Background.texture = night_texture
+			$Game/Background/DeskLight.show()
 
 
 func _on_level_start():
+	_prepare_background()
 	$Game/MorseText.hide()
 	$Game/PaperAnimation.show()
 	$Game/PaperAnimation.frame = 0
 	$Game/PaperAnimation.play()
+	$Game/TelegraphAnimation.play("idle")
 
 
 func _on_play_button_pressed():
@@ -76,3 +100,11 @@ func _on_intro_animation_finished():
 	var text = _get_text()
 	$Game/MorseText.reset(text)
 	$Game/MorseText.show()
+
+
+func _on_next_level():
+	current_level += 1
+	if current_level >= level_texts.size():
+		assert(false)
+	$EndMenu.hide()
+	_on_level_start()

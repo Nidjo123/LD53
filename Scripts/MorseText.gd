@@ -10,9 +10,6 @@ signal finished(accuracy: float)
 
 
 func _ready():
-	var font = self.get_theme_font("font")
-	print(font.get_font_name())
-	print(font.get_font_style_name())
 	_set_hint()
 
 
@@ -20,6 +17,7 @@ func reset(text):
 	$Text.text = text
 	original_text = text
 	letter_idx = 0
+	correct_letters.clear()
 	_set_hint()
 
 
@@ -61,6 +59,7 @@ func _set_hint():
 	var letter = original_text[letter_idx]
 	var hint_text: String = MorseUtils.get_code(letter)
 	$MorseHint/HintText.text = hint_text
+	$MorseHint.show()
 
 
 func _get_letter_bbcode(letter, correct):
@@ -86,8 +85,8 @@ func _set_text():
 	$Text.text = text
 
 
-func _is_whitespace(s):
-	return s.strip_edges() == ''
+func _is_skippable(s):
+	return MorseUtils.get_code(s) == ''
 
 
 func advance_letter(letter: String):
@@ -100,7 +99,7 @@ func advance_letter(letter: String):
 	else:
 		correct_letters.append(true)
 	letter_idx += 1
-	while letter_idx < text.length() and _is_whitespace(text[letter_idx]):
+	while letter_idx < text.length() and _is_skippable(text[letter_idx]):
 		correct_letters.append(null)
 		letter_idx += 1
 	if letter_idx >= text.length():
@@ -120,7 +119,7 @@ func _get_accuracy():
 
 
 func _finished():
-	$MorseHint/HintText.hide()
+	$MorseHint.hide()
 	var accuracy = _get_accuracy()
 	finished.emit(accuracy)
 

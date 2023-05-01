@@ -25,13 +25,11 @@ script = ExtResource("1_eyuaq")
 layout_mode = 0
 offset_left = 381.0
 offset_top = 151.0
-offset_right = 542.0
-offset_bottom = 188.0
+offset_right = 546.0
+offset_bottom = 311.0
 scale = Vector2(2, 2)
 bbcode_enabled = true
-text = "Test
-Text
-"
+text = "01234"
 scroll_active = false
 autowrap_mode = 0
 shortcut_keys_enabled = false

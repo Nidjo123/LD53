@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cb5khxpbu7ecs"]
+[gd_scene load_steps=14 format=3 uid="uid://cb5khxpbu7ecs"]
 
 [ext_resource type="PackedScene" uid="uid://cytf7hrfph3ta" path="res://Scenes/MorseController.tscn" id="1_dot85"]
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_f4xmj"]
+[ext_resource type="Texture2D" uid="uid://brupwfabmh1ll" path="res://Images/tbg-day.png" id="2_ck07p"]
 [ext_resource type="Script" path="res://Telegraph.gd" id="2_ff80x"]
 [ext_resource type="PackedScene" uid="uid://c0778ivao4xo2" path="res://Scenes/MorseText.tscn" id="2_pj4sx"]
 [ext_resource type="SpriteFrames" uid="uid://becau161cstrh" path="res://Animations/TelegraphPressNewFrames.tres" id="4_5km8r"]
@@ -24,7 +25,22 @@ fill_from = Vector2(0.512821, 0.517094)
 [node name="TelegraphScene" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_f4xmj")
-level_texts = Array[String](["Day 1"])
+level_texts = Array[String](["Weather 
+is nice", "People
+are
+calm", "Yet
+something
+is wrong", "I can
+hear it", "It is
+coming
+closer", "The
+journey
+begins", "Do not
+look
+behind"])
+time_of_day = Array[int]([0, 0, 0, 1, 1, 1, 1])
+day_texture = ExtResource("2_ck07p")
+night_texture = ExtResource("5_wgi4m")
 
 [node name="Game" type="Node2D" parent="."]
 process_mode = 1
@@ -33,15 +49,18 @@ script = ExtResource("2_ff80x")
 [node name="Background" type="Sprite2D" parent="Game"]
 position = Vector2(574.889, 323.5)
 scale = Vector2(3.60556, 3.60556)
-texture = ExtResource("5_wgi4m")
+texture = ExtResource("2_ck07p")
 
-[node name="PointLight2D" type="PointLight2D" parent="Game/Background"]
+[node name="DeskLight" type="PointLight2D" parent="Game/Background"]
 position = Vector2(-128.105, 52.2804)
 color = Color(0.501961, 0.498039, 0, 1)
 texture = SubResource("GradientTexture2D_h36cn")
 script = ExtResource("4_utoqk")
 
 [node name="MorseController" parent="Game" instance=ExtResource("1_dot85")]
+dot_duration = 0.07
+dash_duration = 0.3
+tolerance = 0.1
 
 [node name="TelegraphAnimation" type="AnimatedSprite2D" parent="Game"]
 position = Vector2(575.778, 324.5)
@@ -55,6 +74,7 @@ position = Vector2(575.5, 322.5)
 scale = Vector2(3.60313, 3.58333)
 sprite_frames = ExtResource("7_6fdi2")
 frame = 13
+speed_scale = 0.5
 
 [node name="MorseText" parent="Game" instance=ExtResource("2_pj4sx")]
 
@@ -122,4 +142,5 @@ text = "Play
 [connection signal="animation_finished" from="Game/PaperAnimation" to="." method="_on_intro_animation_finished"]
 [connection signal="finished" from="Game/MorseText" to="." method="_on_morse_text_finished"]
 [connection signal="game_resumed" from="PauseMenu" to="." method="_on_resume_button_pressed"]
+[connection signal="game_continued" from="EndMenu" to="." method="_on_next_level"]
 [connection signal="pressed" from="GameIntro/CenterContainer/Panel/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

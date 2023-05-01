@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://qyc2k6y2vgje"]
+[gd_scene load_steps=4 format=3 uid="uid://qyc2k6y2vgje"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_cycvh"]
+[ext_resource type="Texture2D" uid="uid://dnex6jhvm3anf" path="res://Images/logo.png" id="2_e35q1"]
+[ext_resource type="AudioStream" uid="uid://8vepsn74yqp8" path="res://Sounds/maintheme.wav" id="3_sh3ie"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -20,39 +22,72 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="CenterContainer"]
-custom_minimum_size = Vector2(400, 300)
+custom_minimum_size = Vector2(500, 400)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -62.5
-offset_right = 64.0
-offset_bottom = 62.5
+offset_left = -173.0
+offset_top = -205.0
+offset_right = 173.0
+offset_bottom = 205.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
+
+[node name="Logo" type="TextureRect" parent="CenterContainer/Panel/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_e35q1")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="StartButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+[node name="StartButton" type="Button" parent="CenterContainer/Panel/VBoxContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Start"
 
-[node name="HelpButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+[node name="HelpButton" type="Button" parent="CenterContainer/Panel/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "Help
 "
 
-[node name="AboutButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+[node name="AboutButton" type="Button" parent="CenterContainer/Panel/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "About"
 
-[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
-[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SoundLabel" type="Label" parent="CenterContainer/Panel/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Music:
+"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/Panel/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -50.0
+max_value = 0.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sh3ie")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer2/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer2/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer2/VBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="value_changed" from="CenterContainer/Panel/VBoxContainer2/VBoxContainer/HBoxContainer/HSlider" to="." method="_on_volume_changed"]
