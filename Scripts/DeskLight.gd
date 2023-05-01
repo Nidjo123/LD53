@@ -6,7 +6,7 @@ extends PointLight2D
 var random = RandomNumberGenerator.new()
 
 
-func _process(delta):
+func _process(_delta):
 	if abs(scale.x - target_scale) < 0.001:
 		target_scale = random.randf_range(0.6, 1.6)
 	

@@ -21,3 +21,8 @@ func set_time(time):
 
 func _on_continue_button_pressed():
 	game_continued.emit()
+
+
+func _on_visibility_changed():
+	if is_inside_tree():
+		$CenterContainer/Panel/VBoxContainer/ContinueButton.grab_focus()

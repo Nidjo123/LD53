@@ -71,4 +71,5 @@ layout_mode = 2
 text = "Continue
 "
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

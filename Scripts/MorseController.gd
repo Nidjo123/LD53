@@ -32,7 +32,7 @@ func _register_input():
 	inputs += input
 	if input == '':
 		input = 'nothing'
-	print("Registered %s, elapsed %f" % [input, pressed_elapsed])
+	#print("Registered %s, elapsed %f" % [input, pressed_elapsed])
 
 
 func _process(delta):

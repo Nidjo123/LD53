@@ -8,7 +8,6 @@
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
 stream = ExtResource("1_51nla")
-autoplay = true
 bus = &"Music"
 script = ExtResource("2_nxl0h")
 main_theme = ExtResource("3_ucyl7")

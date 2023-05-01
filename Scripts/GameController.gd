@@ -111,6 +111,10 @@ func _on_next_level():
 		current_level += 1
 	var num_levels = level_texts.size()
 	if current_level == num_levels - 1:
+		var tween = get_tree().create_tween()
+		var target_volume_db = Music.volume_db
+		Music.volume_db = -70
+		tween.tween_property(Music, "volume_db", target_volume_db, 3.0)
 		Music.set_stream(Music.intense_theme)
 		Music.play()
 	if current_level >= level_texts.size():
