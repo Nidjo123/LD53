@@ -40,8 +40,8 @@ func _get_character_line(letter_index):
 
 func _get_line_text(letter_index):
 	var line_start_idx = _get_line_start_letter_idx(letter_index)
-	var len = letter_index - line_start_idx + 1
-	return original_text.substr(line_start_idx, len)
+	var length = letter_index - line_start_idx + 1
+	return original_text.substr(line_start_idx, length)
 	
 
 func _get_letter_position(letter_index):
@@ -109,7 +109,7 @@ func advance_letter(letter: String):
 	_set_text()
 
 
-func _get_accuracy():
+func get_accuracy():
 	var letter_count = 0
 	for letter in original_text:
 		if MorseUtils.get_code(letter) != '':
@@ -120,7 +120,7 @@ func _get_accuracy():
 
 func _finished():
 	$MorseHint.hide()
-	var accuracy = _get_accuracy()
+	var accuracy = get_accuracy()
 	finished.emit(accuracy)
 
 

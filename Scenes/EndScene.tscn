@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqwtnpvyrswiw"]
+
+[ext_resource type="Texture2D" uid="uid://brq6ukncpmt6y" path="res://Images/tbg-night.png" id="1_dio3e"]
+[ext_resource type="Script" path="res://Scripts/EndScene.gd" id="1_vq8r2"]
+[ext_resource type="Script" path="res://Scripts/DeskLight.gd" id="2_1plie"]
+
+[sub_resource type="Gradient" id="Gradient_4b0w0"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.626866)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3iu4f"]
+gradient = SubResource("Gradient_4b0w0")
+fill = 1
+fill_from = Vector2(0.512821, 0.517094)
+
+[node name="EndScene" type="Node2D"]
+script = ExtResource("1_vq8r2")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(574.889, 323.5)
+scale = Vector2(3.60556, 3.60556)
+texture = ExtResource("1_dio3e")
+
+[node name="DeskLight" type="PointLight2D" parent="Background"]
+position = Vector2(-128.105, 52.2804)
+color = Color(0.501961, 0.498039, 0, 1)
+texture = SubResource("GradientTexture2D_3iu4f")
+script = ExtResource("2_1plie")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="EndText" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "The telegraph operator disappeared
+and nobody ever saw him again.
+
+Loud shrieks were heard that night.
+People desperately searched every 
+nook and cranny.
+
+Not a single trace was found."
+horizontal_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Main Menu"
+
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

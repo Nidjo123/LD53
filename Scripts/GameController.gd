@@ -9,7 +9,7 @@ enum TimeOfDay { DAY, NIGHT }
 
 
 @onready var time_spent: float = 0.0
-@onready var current_level: int = 0
+@export var current_level: int = 0
 
 @export_multiline var level_texts: Array[String] = []
 @export var time_of_day: Array[TimeOfDay] = []
@@ -19,6 +19,10 @@ enum TimeOfDay { DAY, NIGHT }
 
 func _is_level_transition():
 	return $EndMenu.visible
+	
+	
+func _is_intro_shown():
+	return $GameIntro.visible
 
 
 func _ready():
@@ -42,7 +46,7 @@ func _process(delta):
 
 
 func set_paused(paused):
-	if get_tree().paused == paused or _is_level_transition():
+	if get_tree().paused == paused or _is_level_transition() or _is_intro_shown():
 		return
 	if paused:
 		game_paused.emit()
@@ -103,8 +107,15 @@ func _on_intro_animation_finished():
 
 
 func _on_next_level():
-	current_level += 1
+	if $Game/MorseText.get_accuracy() >= 60:
+		current_level += 1
+	var num_levels = level_texts.size()
+	if current_level == num_levels - 1:
+		Music.set_stream(Music.intense_theme)
+		Music.play()
 	if current_level >= level_texts.size():
-		assert(false)
-	$EndMenu.hide()
-	_on_level_start()
+		Music.stop()
+		get_tree().change_scene_to_file("res://Scenes/EndScene.tscn")
+	else:
+		$EndMenu.hide()
+		_on_level_start()

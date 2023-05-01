@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgh4st33p185r"]
+
+[ext_resource type="AudioStream" uid="uid://8vepsn74yqp8" path="res://Sounds/maintheme.wav" id="1_51nla"]
+[ext_resource type="Script" path="res://Scripts/Music.gd" id="2_nxl0h"]
+[ext_resource type="AudioStream" uid="uid://cn6qew8wysfmw" path="res://Sounds/maintheme.mp3" id="3_ucyl7"]
+[ext_resource type="AudioStream" uid="uid://cux72h20k1i16" path="res://Sounds/intense.mp3" id="4_ww0hk"]
+[ext_resource type="AudioStream" uid="uid://fyu72nibw3hn" path="res://Sounds/ending.mp3" id="5_k3dnx"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_51nla")
+autoplay = true
+bus = &"Music"
+script = ExtResource("2_nxl0h")
+main_theme = ExtResource("3_ucyl7")
+intense_theme = ExtResource("4_ww0hk")
+end_theme = ExtResource("5_k3dnx")

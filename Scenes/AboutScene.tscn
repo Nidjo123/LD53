@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://d3etilghg2p2q"]
+[gd_scene load_steps=2 format=3 uid="uid://d3etilghg2p2q"]
+
+[ext_resource type="Script" path="res://Scripts/AboutScene.gd" id="1_guyem"]
 
 [node name="AboutScene" type="Control"]
 layout_mode = 3
@@ -7,3 +9,48 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_guyem")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.5
+offset_top = -223.0
+offset_right = 213.5
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="AboutText" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Abyssal Transit is a game where you play 
+a role of a lone telegraph operator in a small 
+desolate town.
+
+Some urgent messages arrive that you need to 
+deliver to the nearest telegraph outpost.
+
+But not everything is as it appears...
+
+
+
+Made for Ludum Dare 53 in 72 hours 
+by Simun182 and Nidjo123."
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back to Main menu"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

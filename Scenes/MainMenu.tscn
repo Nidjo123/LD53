@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_cycvh"]
 [ext_resource type="Texture2D" uid="uid://dnex6jhvm3anf" path="res://Images/logo.png" id="2_e35q1"]
-[ext_resource type="AudioStream" uid="uid://8vepsn74yqp8" path="res://Sounds/maintheme.wav" id="3_sh3ie"]
+[ext_resource type="PackedScene" uid="uid://dgh4st33p185r" path="res://Scenes/Music.tscn" id="3_fk0ha"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -57,11 +57,6 @@ custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Start"
 
-[node name="HelpButton" type="Button" parent="CenterContainer/Panel/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-text = "Help
-"
-
 [node name="AboutButton" type="Button" parent="CenterContainer/Panel/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "About"
@@ -82,12 +77,8 @@ size_flags_vertical = 4
 min_value = -50.0
 max_value = 0.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_sh3ie")
-autoplay = true
-bus = &"Music"
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("3_fk0ha")]
 
 [connection signal="pressed" from="CenterContainer/Panel/VBoxContainer2/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer2/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="CenterContainer/Panel/VBoxContainer2/VBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
 [connection signal="value_changed" from="CenterContainer/Panel/VBoxContainer2/VBoxContainer/HBoxContainer/HSlider" to="." method="_on_volume_changed"]

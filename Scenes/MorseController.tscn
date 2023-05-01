@@ -7,6 +7,9 @@
 script = ExtResource("1_lu0of")
 
 [node name="MorseAudio" parent="." instance=ExtResource("2_4smsn")]
+sample_hz = 20000.0
+pulse_hz = 420.0
+rand_range = 0.0
 
 [connection signal="telegraph_pressed" from="." to="MorseAudio" method="_on_morse_controller_telegraph_pressed"]
 [connection signal="telegraph_released" from="." to="MorseAudio" method="_on_morse_controller_telegraph_released"]

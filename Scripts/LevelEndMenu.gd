@@ -1,11 +1,17 @@
 extends Control
 
+
 signal game_continued
 
 
 func set_accuracy(accuracy):
 	var label = $CenterContainer/Panel/VBoxContainer/AccuracyHBoxContainer/AccuracyValue
 	label.text = '%.2f %%' % accuracy
+	
+	if accuracy < 60:
+		$CenterContainer/Panel/VBoxContainer/ContinueButton.text = 'Retry'
+	else:
+		$CenterContainer/Panel/VBoxContainer/ContinueButton.text = 'Continue'
 
 
 func set_time(time):
