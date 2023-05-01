@@ -1,19 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb5khxpbu7ecs"]
+[gd_scene load_steps=13 format=3 uid="uid://cb5khxpbu7ecs"]
 
 [ext_resource type="PackedScene" uid="uid://cytf7hrfph3ta" path="res://Scenes/MorseController.tscn" id="1_dot85"]
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_f4xmj"]
 [ext_resource type="Script" path="res://Telegraph.gd" id="2_ff80x"]
 [ext_resource type="PackedScene" uid="uid://c0778ivao4xo2" path="res://Scenes/MorseText.tscn" id="2_pj4sx"]
 [ext_resource type="SpriteFrames" uid="uid://becau161cstrh" path="res://Animations/TelegraphPressNewFrames.tres" id="4_5km8r"]
+[ext_resource type="Script" path="res://Scripts/DeskLight.gd" id="4_utoqk"]
 [ext_resource type="Texture2D" uid="uid://brq6ukncpmt6y" path="res://Images/tbg-night.png" id="5_wgi4m"]
+[ext_resource type="SpriteFrames" uid="uid://cri3tjvu4fasq" path="res://Animations/IntroFrames.tres" id="7_6fdi2"]
+[ext_resource type="PackedScene" uid="uid://bwm7d70uvtlg8" path="res://Scenes/LevelEndMenu.tscn" id="8_mhoc4"]
+[ext_resource type="PackedScene" uid="uid://bgsa2wq1qmsvu" path="res://Scenes/PauseMenu.tscn" id="8_unh2q"]
 
-[sub_resource type="GDScript" id="GDScript_40e8m"]
-script/source = "extends Control
-"
+[sub_resource type="Gradient" id="Gradient_4b0w0"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.626866)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h36cn"]
+gradient = SubResource("Gradient_4b0w0")
+fill = 1
+fill_from = Vector2(0.512821, 0.517094)
 
 [node name="TelegraphScene" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_f4xmj")
+level_texts = Array[String](["Day 1"])
 
 [node name="Game" type="Node2D" parent="."]
 process_mode = 1
@@ -24,9 +35,13 @@ position = Vector2(574.889, 323.5)
 scale = Vector2(3.60556, 3.60556)
 texture = ExtResource("5_wgi4m")
 
-[node name="MorseController" parent="Game" instance=ExtResource("1_dot85")]
+[node name="PointLight2D" type="PointLight2D" parent="Game/Background"]
+position = Vector2(-128.105, 52.2804)
+color = Color(0.501961, 0.498039, 0, 1)
+texture = SubResource("GradientTexture2D_h36cn")
+script = ExtResource("4_utoqk")
 
-[node name="MorseText" parent="Game" instance=ExtResource("2_pj4sx")]
+[node name="MorseController" parent="Game" instance=ExtResource("1_dot85")]
 
 [node name="TelegraphAnimation" type="AnimatedSprite2D" parent="Game"]
 position = Vector2(575.778, 324.5)
@@ -35,25 +50,36 @@ sprite_frames = ExtResource("4_5km8r")
 animation = &"idle"
 speed_scale = 3.0
 
-[node name="PauseMenu" type="Control" parent="."]
-process_mode = 3
+[node name="PaperAnimation" type="AnimatedSprite2D" parent="Game"]
+position = Vector2(575.5, 322.5)
+scale = Vector2(3.60313, 3.58333)
+sprite_frames = ExtResource("7_6fdi2")
+frame = 13
+
+[node name="MorseText" parent="Game" instance=ExtResource("2_pj4sx")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_unh2q")]
+
+[node name="EndMenu" parent="." instance=ExtResource("8_mhoc4")]
+visible = false
+
+[node name="GameIntro" type="Control" parent="."]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = SubResource("GDScript_40e8m")
 
-[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+[node name="CenterContainer" type="CenterContainer" parent="GameIntro"]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="Panel" type="Panel" parent="PauseMenu/CenterContainer"]
-custom_minimum_size = Vector2(300, 300)
+[node name="Panel" type="Panel" parent="GameIntro/CenterContainer"]
+custom_minimum_size = Vector2(500, 300)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameIntro/CenterContainer/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -68,23 +94,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/CenterContainer/Panel/VBoxContainer"]
+[node name="IntroText" type="Label" parent="GameIntro/CenterContainer/Panel/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+text = "You are a telegraph operator in a small remote 
+American town.
 
-[node name="VolumeLabel" type="Label" parent="PauseMenu/CenterContainer/Panel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Volume:"
+There are some urgent messages to deliver.
 
-[node name="VolumeSlider" type="HSlider" parent="PauseMenu/CenterContainer/Panel/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 2
-size_flags_vertical = 4
-min_value = -72.0
-max_value = 0.0
+Use Space, Down or S to transmit signal."
+horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="PauseMenu/CenterContainer/Panel/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="GameIntro/CenterContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "Resume"
+size_flags_horizontal = 4
+text = "Play
+"
 
 [connection signal="game_resumed" from="." to="Game/MorseController" method="_reset_state"]
 [connection signal="letter_typed" from="Game/MorseController" to="Game" method="_on_morse_controller_letter_typed"]
@@ -93,5 +119,7 @@ text = "Resume"
 [connection signal="telegraph_released" from="Game/MorseController" to="Game" method="_on_morse_controller_telegraph_released"]
 [connection signal="telegraph_released" from="Game/MorseController" to="Game/MorseController" method="_on_telegraph_released"]
 [connection signal="animation_finished" from="Game/TelegraphAnimation" to="Game" method="_on_telegraph_animation_animation_finished"]
-[connection signal="value_changed" from="PauseMenu/CenterContainer/Panel/VBoxContainer/HBoxContainer/VolumeSlider" to="Game/MorseController" method="_on_volume_slider_value_changed"]
-[connection signal="pressed" from="PauseMenu/CenterContainer/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="animation_finished" from="Game/PaperAnimation" to="." method="_on_intro_animation_finished"]
+[connection signal="finished" from="Game/MorseText" to="." method="_on_morse_text_finished"]
+[connection signal="game_resumed" from="PauseMenu" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GameIntro/CenterContainer/Panel/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

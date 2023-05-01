@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgsa2wq1qmsvu"]
+
+[sub_resource type="GDScript" id="GDScript_40e8m"]
+script/source = "extends Control
+
+
+signal game_resumed
+
+
+func _on_resume_button_pressed():
+	game_resumed.emit()
+"
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_40e8m")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Volume:"
+
+[node name="VolumeSlider" type="HSlider" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -72.0
+max_value = 0.0
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

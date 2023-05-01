@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0778ivao4xo2"]
+[gd_scene load_steps=4 format=3 uid="uid://c0778ivao4xo2"]
 
 [ext_resource type="Theme" uid="uid://bivyqx1y8v6km" path="res://Theme.tres" id="1_8gx2c"]
 [ext_resource type="Script" path="res://Scripts/MorseText.gd" id="1_eyuaq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pg8bq"]
+bg_color = Color(0.694118, 0.694118, 0.694118, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.556863, 0.466667, 0.278431, 1)
 
 [node name="MorseText" type="Control"]
 layout_mode = 3
@@ -21,20 +29,19 @@ offset_right = 542.0
 offset_bottom = 188.0
 scale = Vector2(2, 2)
 bbcode_enabled = true
-text = "TEST TEXT
+text = "Test
+Text
 "
 scroll_active = false
+autowrap_mode = 0
 shortcut_keys_enabled = false
 
 [node name="MorseHint" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_right = 65.0
 offset_bottom = 43.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pg8bq")
 
-[node name="HintText" type="RichTextLabel" parent="MorseHint"]
-clip_contents = false
+[node name="HintText" type="Label" parent="MorseHint"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 24
-bbcode_enabled = true
-text = "test 1[color=green]2[/color]3415"
-scroll_active = false
+horizontal_alignment = 1

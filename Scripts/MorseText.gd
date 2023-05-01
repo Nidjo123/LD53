@@ -6,14 +6,21 @@ signal finished(accuracy: float)
 
 @onready var letter_idx = 0
 @onready var correct_letters = []
-@onready var original_text = $Text.text
+@onready var original_text = $Text.get_parsed_text()
 
 
 func _ready():
 	var font = self.get_theme_font("font")
 	print(font.get_font_name())
 	print(font.get_font_style_name())
-	_set_hint_text()
+	_set_hint()
+
+
+func reset(text):
+	$Text.text = text
+	original_text = text
+	letter_idx = 0
+	_set_hint()
 
 
 func get_string_size(string):
@@ -22,21 +29,38 @@ func get_string_size(string):
 	return font.get_string_size(string, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
 
 
-func get_letter_position(letter_index):
+func _get_line_start_letter_idx(letter_index):
+	assert(original_text[letter_index] != '\n')
+	while letter_index > 0 and original_text[letter_index] != '\n':
+		letter_index -= 1
+	return letter_index + 1 if letter_index > 0 else letter_index
+
+
+func _get_character_line(letter_index):
+	return original_text.substr(0, letter_index).count('\n')
+
+
+func _get_line_text(letter_index):
+	var line_start_idx = _get_line_start_letter_idx(letter_index)
+	var len = letter_index - line_start_idx + 1
+	return original_text.substr(line_start_idx, len)
+	
+
+func _get_letter_position(letter_index):
 	var text = original_text
-	var text_so_far = text.substr(0, letter_index + 1)
-	var text_size = get_string_size(text_so_far)
-	text_size.y = 0
+	var line_text = _get_line_text(letter_index)
+	var text_size = get_string_size(line_text)
 	var letter_size = get_string_size(text[letter_index])
+	var line = _get_character_line(letter_index)
+	text_size.y = $Text.get_line_offset(line)
 	var hint_offset = Vector2(-letter_size.x / 2, -letter_size.y)
 	return $Text.position + (text_size + hint_offset) * $Text.scale
 
 
-func _set_hint_text():
+func _set_hint():
 	var letter = original_text[letter_idx]
 	var hint_text: String = MorseUtils.get_code(letter)
-	hint_text = hint_text.replace('.', '*')
-	$MorseHint/HintText.text = '[center]%s[/center]' % hint_text
+	$MorseHint/HintText.text = hint_text
 
 
 func _get_letter_bbcode(letter, correct):
@@ -60,7 +84,11 @@ func _set_text():
 		else:
 			text += letter
 	$Text.text = text
-		
+
+
+func _is_whitespace(s):
+	return s.strip_edges() == ''
+
 
 func advance_letter(letter: String):
 	var text = original_text
@@ -72,13 +100,13 @@ func advance_letter(letter: String):
 	else:
 		correct_letters.append(true)
 	letter_idx += 1
-	while letter_idx < text.length() and text[letter_idx] == ' ':
+	while letter_idx < text.length() and _is_whitespace(text[letter_idx]):
 		correct_letters.append(null)
-		letter_idx = (letter_idx + 1) % original_text.length()
+		letter_idx += 1
 	if letter_idx >= text.length():
 		_finished()
 	else:
-		_set_hint_text()
+		_set_hint()
 	_set_text()
 
 
@@ -88,17 +116,16 @@ func _get_accuracy():
 		if MorseUtils.get_code(letter) != '':
 			letter_count += 1
 	var correct_count = correct_letters.count(true)
-	return float(correct_count) / letter_count
-	$Text.get_character_line()
+	return float(correct_count) / letter_count * 100
 
 
 func _finished():
+	$MorseHint/HintText.hide()
 	var accuracy = _get_accuracy()
 	finished.emit(accuracy)
-	$MorseHint/HintText.hide()
 
 
 func _process(_delta):
 	if letter_idx < original_text.length():
-		var letter_position = get_letter_position(letter_idx)
+		var letter_position = _get_letter_position(letter_idx)
 		$MorseHint.position = letter_position - $MorseHint.size / 2
